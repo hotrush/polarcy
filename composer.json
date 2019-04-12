@@ -1,0 +1,24 @@
+{
+    "name": "hotrush/polarcy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hotrush",
+            "email": "johny64@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hotrush\\Polarcy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hotrush\\Polarcy\\Tests\\": "tests"
+        }
+    }
+}
