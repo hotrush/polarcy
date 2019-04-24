@@ -117,9 +117,13 @@ class Polarcy
 
         $maxDistance = $distances[0];
 
-        foreach ($distances as $distance) {
-            $remoteness = ($maxDistance - $distance) / $maxDistance;
-            $this->accuracy += $remoteness > 0 ? $remoteness * $maxPerPoint : $this->minPerPoint;
+        if ($maxDistance > 0) {
+            foreach ($distances as $distance) {
+                $remoteness = ($maxDistance - $distance) / $maxDistance;
+                $this->accuracy += $remoteness > 0 ? $remoteness * $maxPerPoint : $this->minPerPoint;
+            }
+        } else {
+            $this->accuracy = 100;
         }
     }
 }
