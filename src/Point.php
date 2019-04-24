@@ -15,29 +15,15 @@ class Point
     private $y;
 
     /**
-     * @var float
-     */
-    private $angle;
-
-    /**
-     * @var float
-     */
-    private $radius;
-
-    /**
      * Point constructor.
      *
      * @param mixed $x
      * @param mixed $y
-     * @param mixed $angle in radian
-     * @param mixed $radius
      */
-    public function __construct($x, $y, $angle, $radius)
+    public function __construct($x, $y)
     {
         $this->x = floatval($x);
         $this->y = floatval($y);
-        $this->angle = floatval($angle);
-        $this->radius = floatval($radius);
     }
 
     /**
@@ -54,21 +40,5 @@ class Point
     public function y()
     {
         return $this->y;
-    }
-
-    /**
-     * @return float
-     */
-    public function angle()
-    {
-        return $this->angle;
-    }
-
-    /**
-     * @return float
-     */
-    public function radius()
-    {
-        return $this->radius;
     }
 }

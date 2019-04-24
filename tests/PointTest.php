@@ -9,12 +9,10 @@ class PointTest extends TestCase
 {
     public function testPointClass()
     {
-        $point = new Point(1, 2, 3, 4);
+        $point = new Point(1, 2);
 
         $this->assertInstanceOf(Point::class, $point);
         $this->assertEquals(1, $point->x());
         $this->assertEquals(2, $point->y());
-        $this->assertEquals(3, $point->angle());
-        $this->assertEquals(4, $point->radius());
     }
 }

@@ -88,16 +88,16 @@ class Polarcy
      */
     private function calculateAveragePoint()
     {
-        $radiusSum = array_sum(array_map(function (Point $point) {
-            return $point->radius();
+        $xSum = array_sum(array_map(function (Point $point) {
+            return $point->x();
         }, $this->pointsCollection->all()));
-        $anglesSum = array_sum(array_map(function (Point $point) {
-            return $point->angle();
+        $ySum = array_sum(array_map(function (Point $point) {
+            return $point->y();
         }, $this->pointsCollection->all()));
 
-        $this->averagePoint = PointFactory::createFromPolar(
-            $anglesSum / $this->pointsCollection->total(),
-            $radiusSum / $this->pointsCollection->total()
+        $this->averagePoint = new Point(
+            $xSum / $this->pointsCollection->total(),
+            $ySum / $this->pointsCollection->total()
         );
     }
 

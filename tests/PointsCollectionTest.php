@@ -17,7 +17,7 @@ class PointsCollectionTest extends TestCase
         $this->assertEmpty($collection->all());
 
         for ($i = 1; $i <= 3; $i++) {
-            $collection->add(new Point($i, $i + 1, $i + 2, $i + 3));
+            $collection->add(new Point($i, $i + 1));
         }
 
         $this->assertEquals(3, $collection->total());
