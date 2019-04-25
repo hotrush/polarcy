@@ -22,21 +22,28 @@ class Polarcy
     /**
      * @var float|int
      */
+    private $maxDistance;
+
+    /**
+     * @var float|int
+     */
     private $minPerPoint;
 
     /**
      * Polarcy constructor.
      *
      * @param PointsCollection $pointsCollection
+     * @param null $maxDistance
      * @param null $minPerPoint
      */
-    public function __construct(PointsCollection $pointsCollection, $minPerPoint = null)
+    public function __construct(PointsCollection $pointsCollection, $maxDistance = null, $minPerPoint = null)
     {
         if ($pointsCollection->total() < 2) {
             throw new \InvalidArgumentException('PointsCollection must have at least two points');
         }
 
         $this->pointsCollection = $pointsCollection;
+        $this->maxDistance = $maxDistance;
         $this->minPerPoint = $minPerPoint ?: $this->minPerPoint();
     }
 
@@ -113,13 +120,14 @@ class Polarcy
             $distances[] = Helpers::distanceBetweenPoints($point, $this->averagePoint);
         }
 
-        rsort($distances, SORT_NUMERIC);
+        if (!$this->maxDistance) {
+            rsort($distances, SORT_NUMERIC);
+            $this->maxDistance = $distances[0];
+        }
 
-        $maxDistance = $distances[0];
-
-        if ($maxDistance > 0) {
+        if ($this->maxDistance > 0) {
             foreach ($distances as $distance) {
-                $remoteness = ($maxDistance - $distance) / $maxDistance;
+                $remoteness = ($this->maxDistance - $distance) / $this->maxDistance;
                 $this->accuracy += $remoteness > 0 ? $remoteness * $maxPerPoint : $this->minPerPoint;
             }
         } else {
